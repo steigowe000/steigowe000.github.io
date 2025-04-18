@@ -1,12 +1,12 @@
 // data for elizabot.js
-// entries prestructured as layed out in Weizenbaum's description 
+// entries prestructured as layed out in Weizenbaum's description
 // [cf: Communications of the ACM, Vol. 9, #1 (January 1966): p 36-45.]
 
 var elizaInitials = [
-"How do you do.  Please tell me your problem.",
+"Hi! I'm Professor Eliza. I'm a professor that specializes in pokemon through generation five. Have any questions about Pokemon?",
 // additions (not original)
-"Please tell me what's been bothering you.",
-"Is something troubling you ?"
+"Hello Trainer! I'm Professor Eliza and I specialize in pokemon through generation five. Which starter Pokemon is your favorite?",
+"Greetings, Trainer! I'm Professor Eliza. I specialize in pokemon through generation five. What is your favorite Pokemon game?"
 ];
 
 var elizaFinals = [
@@ -21,9 +21,9 @@ var elizaFinals = [
 var elizaQuits = [
 "bye",
 "goodbye",
-"done",
-"exit",
-"quit"
+"catch you",
+"gotta go battle",
+"have fun playing"
 ];
 
 var elizaPres = [
@@ -88,99 +88,346 @@ var elizaKeywords = [
   ]]
 */
 
-["xnone", 0, [
+["pokemon", 0, [
  ["*", [
-     "I'm not sure I understand you fully.",
-     "Please go on.",
-     "What does that suggest to you ?",
-     "Do you feel strongly about discussing such things ?",
-     "That is interesting.  Please continue.",
-     "Tell me more about that.",
-     "Does talking about this bother you ?"
+     "There are over 1000 Pokemon in the Pokedex! Do you have a favorite game?",
+     "What type of Pokemon do you like? Grass? Water? Dark?"
   ]]
 ]],
-["sorry", 0, [
+["red", 1, [
  ["*", [
-     "Please don't apologise.",
-     "Apologies are not necessary.",
-     "I've told you that apologies are not required.",
-     "It did not bother me.  Please continue."
+     "That is one of the two original releases! Back in 1996, Pokemon Red and Green were released in Japan. What is your favorite type of pokemon?",
+     "Oh, you're a fan of the classics. What is your favorite type of pokemon?",
+     "I like Pokemon Red, too, but it is not my favorite. What is your favorite type of pokemon?",
   ]]
 ]],
-["apologise", 0, [
- ["*", [
-     "goto sorry"
+
+["green", 1, [
+  ["*", [
+    "That is one of the two original releases! Back in 1996, Pokemon Red and Green were released in Japan. What is your favorite type of pokemon?",
+    "Oh, you're a fan of the classics. What is your favorite type of pokemon?",
+    "I like Pokemon Green, too, but it is not my favorite. What is your favorite type of pokemon?"
   ]]
 ]],
-["remember", 5, [
- ["* i remember *", [
-     "Do you often think of (2) ?",
-     "Does thinking of (2) bring anything else to mind ?",
-     "What else do you recollect ?",
-     "Why do you remember (2) just now ?",
-     "What in the present situation reminds you of (2) ?",
-     "What is the connection between me and (2) ?",
-     "What else does (2) remind you of ?"
+
+["blue", 1, [
+  ["*", [
+    "One of the first generation games! Truly a classic. What is your favorite type of pokemon?"
+  ]]
+]],
+
+["gold", 1, [
+  ["*", [
+    "One of the second generation games! Truly a classic. What is your favorite type of pokemon?",
+    "Pokemon Gold Version is available on the original Gameboy. What is your favorite type of pokemon?"
+  ]]
+]],
+
+["silver", 1, [
+  ["*", [
+    "One of the second generation games! Truly a classic. What is your favorite type of pokemon?",
+    "Pokemon Silver is available on the original Gameboy. What is your favorite type of pokemon?"
+  ]]
+]],
+
+["ruby", 1, [
+  ["*", [
+    "One of the third generation games! One of my favorites. What is your favorite type of pokemon?",
+    "Ruby is available for the GameBoy Advance, as it released in 2002. What is your favorite type of pokemon?"
+  ]]
+]],
+
+["sapphire", 1, [
+  ["*", [
+    "One of the third generation games! Originally released for the GameBoy Advance. What is your favorite type of pokemon?",
+    "Pokemon Sapphire is available for the GameBoy Advance and features Kyogre as the legendary Pokemon. What is your favorite type of pokemon?"
+  ]]
+]],
+
+["emerald", 1, [
+  ["*", [
+    "One of the third generation games! My favorite Pokemon game to date. What is your favorite type of pokemon?",
+    "Pokemon Emerald released as the third installment in the generation three games. What is your favorite type of pokemon?"
+  ]]
+]],
+
+["heartgold", 1, [
+  ["*", [
+    "A remake of the second generation games, Pokemon HeartGold released for the Nintendo D.S. What is your favorite type of pokemon?"
+  ]]
+]],
+
+["soulsilver", 1, [
+  ["*", [
+    "A remake of the second generation games, Pokemon SoulSilver released for the Nintendo D.S. What is your favorite type of pokemon?"
+  ]]
+]],
+
+["pearl", 1, [
+  ["*", [
+    "One of the generation four games! A great game to pick up and play for the Nintendo D.S. What is your favorite type of pokemon?",
+    "Pokemon Pearl featured starters like Turtwig, Chimchar, and Piplup.What is your favorite type of pokemon?"
+  ]]
+]],
+
+["diamond", 1, [
+  ["*", [
+    "One of the fourth generation games! A great game to pick up and play for the Nintendo D.S. What is your favorite type of pokemon?",
+    "Pokemon Diamond featured starters like Turtwig, Chimchar, and Piplup. What is your favorite type of pokemon?"
+  ]]
+]],
+
+["platinum", 1, [
+  ["*", [
+    "One of the fourth generation games! It released as the third installment in the fourth generation of games. What is your favorite type of pokemon?",
+    "Pokemon Platinum featured all the same starters as Pearl and Diamond, with a twist at the end that sets it apart. What is your favorite type of pokemon?"
+  ]]
+]],
+
+["black", 1, [
+  ["*", [
+    "One of the fifth generation games! Pokemon Black released for the Nintendo D.S. and featured all new Pokemon. What is your favorite type of pokemon?"
+  ]]
+]],
+
+["white", 1, [
+  ["*", [
+    "One of the fifth generation games! Pokemon White was released on the Nintendo D.S. and featured new game mechanics and Pokemon. What is your favorite type of pokemon?"
+  ]]
+]],
+
+
+["charmander",2, [
+  ["*", [
+     "Charmander evolves into Charmeleon, then into Charizard. What other starter pokemon do you want to learn about?",
+     "Charmander is a fire type pokemon. What other starter pokemon do you want to learn about?"
+   ]]
   ]],
- ["* do you remember *", [
-     "Did you think I would forget (2) ?",
-     "Why do you think I should recall (2) now ?",
-     "What about (2) ?",
-     "goto what",
-     "You mentioned (2) ?"
+
+["squirtle",2, [
+    ["*", [
+       "Squirtle evolves into Wartortle, then into Blastoise. What other starter pokemon do you want to learn about?",
+       "Squirtle is a water type pokemon. What other starter pokemon do you want to learn about?"
+     ]]
   ]],
- ["* you remember *", [
-     "How could I forget (2) ?",
-     "What about (2) should I remember ?",
-     "goto you"
-  ]]
-]],
-["forget", 5, [
- ["* i forget *", [
-     "Can you think of why you might forget (2) ?",
-     "Why can't you remember (2) ?",
-     "How often do you think of (2) ?",
-     "Does it bother you to forget that ?",
-     "Could it be a mental block ?",
-     "Are you generally forgetful ?",
-     "Do you think you are suppressing (2) ?"
+
+["bulbasaur",1, [
+  ["*", [
+      "Bulbasaur evolves into Ivysaur, then into Venusaur. What other starter pokemon do you want to learn about?",
+      "Bulbasaur is a grass type pokemon. What other starter pokemon do you want to learn about?"
+    ]]
   ]],
- ["* did you forget *", [
-     "Why do you ask ?",
-     "Are you sure you told me ?",
-     "Would it bother you if I forgot (2) ?",
-     "Why should I recall (2) just now ?",
-     "goto what",
-     "Tell me more about (2)."
-  ]]
-]],
-["if", 3, [
- ["* if *", [
-     "Do you think it's likely that (2) ?",
-     "Do you wish that (2) ?",
-     "What do you know about (2) ?",
-     "Really, if (2) ?",
-     "What would you do if (2) ?",
-     "But what are the chances that (2) ?",
-     "What does this speculation lead to ?"
-  ]]
-]],
-["dreamed", 4, [
- ["* i dreamed *", [
-     "Really, (2) ?",
-     "Have you ever fantasized (2) while you were awake ?",
-     "Have you ever dreamed (2) before ?",
-     "goto dream"
-  ]]
-]],
-["dream", 3, [
+
+["cyndaquil", 1, [
  ["*", [
-     "What does that dream suggest to you ?",
-     "Do you dream often ?",
-     "What persons appear in your dreams ?",
-     "Do you believe that dreams have something to do with your problem ?"
+     "Cyndaquil evolves into Quilava, then into Typhlosion. What other starter pokemon do you want to learn about?",
+     "Cyndaquil is a fire type pokemon. What other starter pokemon do you want to learn about?"
   ]]
 ]],
+
+["chikorita", 1, [
+ ["*", [
+     "Chikorita evolves into Bayleef, then into Meganium. What other starter pokemon do you want to learn about?",
+     "Chikorita is a grass type pokemon. What other starter pokemon do you want to learn about?"
+  ]]
+]],
+
+["totodile", 1, [
+ ["*", [
+     "Totodile evolves into Croconaw, then into Feraligatr. What other starter pokemon do you want to learn about?",
+     "Totodile is a water type pokemon. What other starter pokemon do you want to learn about?"
+  ]]
+]],
+
+["treecko", 1, [
+ ["*", [
+     "Treecko evolves into Grovyle, then into Sceptile. What other starter pokemon do you want to learn about?",
+     "Treecko is a grass type pokemon. What other starter pokemon do you want to learn about?"
+  ]]
+]],
+
+["torchic", 1, [
+ ["*", [
+     "Torchic evolves into Combusken, then into Blaziken. What other starter pokemon do you want to learn about?",
+     "Torchic is a fire type pokemon. What other starter pokemon do you want to learn about?"
+  ]]
+]],
+
+["mudkip", 1, [
+ ["*", [
+     "Mudkip evolves into Marshtomp, then into Swampert. What other starter pokemon do you want to learn about?",
+     "Mudkip is a water type pokemon. What other starter pokemon do you want to learn about?"
+  ]]
+]],
+
+["turtwig", 1, [
+ ["*", [
+     "Turtwig evolves into Grotle, then into Torterra. What other starter pokemon do you want to learn about?",
+     "Turtwig is a grass type pokemon. What other starter pokemon do you want to learn about?"
+  ]]
+]],
+
+["chimchar", 1, [
+ ["*", [
+     "Chimchar evolves into Monferno, then into Infernape. What other starter pokemon do you want to learn about?",
+     "Chimchar is a fire type pokemon. What other starter pokemon do you want to learn about?"
+  ]]
+]],
+
+["piplup", 1, [
+ ["*", [
+     "Piplup evolves into Prinplup, then into Empoleon. What other starter pokemon do you want to learn about?",
+     "Piplup is a water type pokemon. What other starter pokemon do you want to learn about?"
+  ]]
+]],
+
+["snivy", 1, [
+ ["*", [
+     "Snivy evolves into Servine, then into Serperior. What other starter pokemon do you want to learn about?",
+     "Snivy is a grass type pokemon. What other starter pokemon do you want to learn about?"
+  ]]
+]],
+
+["tepig", 1, [
+ ["*", [
+     "Tepig evolves into Pignite, then into Emboar. What other starter pokemon do you want to learn about?",
+     "Tepig is a fire type pokemon. What other starter pokemon do you want to learn about?"
+  ]]
+]],
+
+["oshawott", 1, [
+ ["*", [
+     "Oshawott evolves into Dewott, then into Samurott. What other starter pokemon do you want to learn about?",
+     "Oshawott is a water type pokemon. What other starter pokemon do you want to learn about?"
+  ]]
+]],
+
+["fire", 1, [
+ ["*", [
+     "Fire type pokemon are strong against bug, grass, ice, and steel type pokemon but weak against water, ground, and rock type pokemon. What other types would you like to know about?"
+  ]]
+]],
+
+["bug", 1, [
+ ["*", [
+     "Bug type pokemon are strong against dark, grass, and psychic type pokemon but weak against rock, ground, and fire type pokemon. What other types would you like to know about?"
+  ]]
+]],
+
+["dark", 1, [
+ ["*", [
+     "Dark type pokemon are strong against ghost and psychic type pokemon but weak against bug, fairy, and fighting type pokemon. What other types would you like to know about?"
+  ]]
+]],
+
+["dragon", 1, [
+ ["*", [
+    "Dragon type pokemon are strong against other dragon types, but are weak to dragon, fairy, and ice type pokemon. What other types of pokemon would you like to know about?"
+  ]]
+]],
+
+["electric", 1, [
+ ["*", [
+    "Electric type pokemon are strong against flying and water type pokemon, but weak to ground type. What other types of pokemon would you like to know about?"
+  ]]
+]],
+
+["fairy", 1, [
+ ["*", [
+    "Fairy type pokemon are strong against dark, dragon, and fighting type pokemon but weak against poison and steel type pokemon. What other types of pokemon would you like to know about?"
+  ]]
+]],
+
+["fighting", 1, [
+ ["*", [
+    "Fighting type pokemon are strong against dark, ice, normal, rock, and steel type pokemon and are weak against psychic, flying, and fairy type pokemon. What other types of pokemon would you like to know about?"
+  ]]
+]],
+
+["flying", 1, [
+ ["*", [
+    "Flying type pokemon are strong against bug, grass, and fighting type pokemon but are weak against rock, ice, and electric type pokemon. What other types of pokemon would you like to know about?"
+  ]]
+]],
+
+["ghost", 1, [
+ ["*", [
+    "Ghost type pokemon are strong against ghost and psychic type pokemon but are weak against ghost and dark type pokemon. What other types of pokemon would you like to know about?"
+  ]]
+]],
+
+["grass", 1, [
+ ["*", [
+    "Grass type pokemon are strong against ground, rock, and water type pokemon but are weak against poison, ice, flying, fire, and bug type pokemon. What other types of pokemon would you like to know about?"
+  ]]
+]],
+
+["ground", 1, [
+ ["*", [
+    "Ground type pokemon are strong against electric, fire, poison, rock, and steel type pokemon but are weak against water, ice, and grass type pokemon. What other types of pokemon would you like to know about?"
+  ]]
+]],
+
+["ice", 1, [
+ ["*", [
+    "Ice type pokemon are strong against dragon, flying, grass, and ground type pokemon, but are weak to steel, rock, ground, fire, and fighting type pokemon. What other types of pokemon would you like to know about?"
+  ]]
+]],
+
+["normal", 1, [
+ ["*", [
+   "Normal type pokemon are not strong against any other types of pokemon, but are only weak against fighting types. What other types of pokemon would you like to know about?"
+  ]]
+]],
+
+["poison", 1, [
+ ["*", [
+    "Poison type pokemon are strong against fairy and grass type pokemon but weak to psychic and ground type pokemon. What other types of pokemon would you like to know about?"
+  ]]
+]],
+
+["psychic", 1, [
+ ["*", [
+    "Psychic pokemon are strong against fighting and poison type pokemon but weak to ghost, dark, and grass type pokemon. What other types of pokemon would you like to know about?"
+  ]]
+]],
+
+["rock", 1, [
+ ["*", [
+    "Rock type pokemon are strong against grass, fire, flying, and ice type pokemon but weak to water, steel, ground, grass, and fighting type pokemon. What other types of pokemon would you like to know about?"
+  ]]
+]],
+
+["steel", 1, [
+ ["*", [
+    "Steel type pokemon are strong against fairy, ice, and rock type pokemon but weak to ground, fire, and fighting type pokemon. What other types of pokemon would you like to know about?"
+  ]]
+]],
+
+["water", 1, [
+ ["*", [
+    "Water type pokemon are strong against fire, ground, and rock type pokemon but are weak to grass and electric type pokemon. What other types of pokemon would you like to know about?"
+  ]]
+]],
+
+["legendary", 1, [
+ ["*", [
+    "Legendary pokemon are some of the strongest and most difficult pokemon to capture. Those who catch them are some of the most skilled trainers in the region. What other types of pokemon do you want to know about?"
+  ]]
+]],
+
+["Pokemon", 1, [
+ ["* tell me about pokemon *", [
+    "Pokemon is a game created in the late 1990's that involved capturing creatures and battling friends and gym leaders. The goal is to become the strongest trainer in the region through the completion of gym battles."
+  ]]
+]],
+
+["battle", 1, [
+ ["* tell me about battling *", [
+    "Battling in pokemon games includes turn based systems where each player has the opportunity to use one of four moves, and the winner is crowned when one player has eliminated all six of the oponents pokemon."
+  ]]
+]],
+
 ["perhaps", 0, [
  ["*", [
      "You don't seem quite certain.",
@@ -191,408 +438,12 @@ var elizaKeywords = [
      "How likely, would you estimate ?"
   ]]
 ]],
-["name", 15, [
- ["*", [
-     "I am not interested in names.",
-     "I've told you before, I don't care about names -- please continue."
-  ]]
-]],
-["deutsch", 0, [
- ["*", [
-     "goto xforeign",
-     "I told you before, I don't understand German."
-  ]]
-]],
-["francais", 0, [
- ["*", [
-     "goto xforeign",
-     "I told you before, I don't understand French."
-  ]]
-]],
-["italiano", 0, [
- ["*", [
-     "goto xforeign",
-     "I told you before, I don't understand Italian."
-  ]]
-]],
-["espanol", 0, [
- ["*", [
-     "goto xforeign",
-     "I told you before, I don't understand Spanish."
-  ]]
-]],
+
 ["xforeign", 0, [
  ["*", [
      "I speak only English."
   ]]
 ]],
-["hello", 0, [
- ["*", [
-     "How do you do.  Please state your problem.",
-     "Hi.  What seems to be your problem ?"
-  ]]
-]],
-["computer", 50, [
- ["*", [
-     "Do computers worry you ?",
-     "Why do you mention computers ?",
-     "What do you think machines have to do with your problem ?",
-     "Don't you think computers can help people ?",
-     "What about machines worries you ?",
-     "What do you think about machines ?",
-     "You don't think I am a computer program, do you ?"
-  ]]
-]],
-["am", 0, [
- ["* am i *", [
-     "Do you believe you are (2) ?",
-     "Would you want to be (2) ?",
-     "Do you wish I would tell you you are (2) ?",
-     "What would it mean if you were (2) ?",
-     "goto what"
-  ]],
- ["* i am *", [
-     "goto i"
-  ]],
- ["*", [
-     "Why do you say 'am' ?",
-     "I don't understand that."
-  ]]
-]],
-["are", 0, [
- ["* are you *", [
-     "Why are you interested in whether I am (2) or not ?",
-     "Would you prefer if I weren't (2) ?",
-     "Perhaps I am (2) in your fantasies.",
-     "Do you sometimes think I am (2) ?",
-     "goto what",
-     "Would it matter to you ?",
-     "What if I were (2) ?"
-  ]],
- ["* you are *", [
-     "goto you"
-  ]],
- ["* are *", [
-     "Did you think they might not be (2) ?",
-     "Would you like it if they were not (2) ?",
-     "What if they were not (2) ?",
-     "Are they always (2) ?",
-     "Possibly they are (2).",
-     "Are you positive they are (2) ?"
-  ]]
-]],
-["your", 0, [
- ["* your *", [
-     "Why are you concerned over my (2) ?",
-     "What about your own (2) ?",
-     "Are you worried about someone else's (2) ?",
-     "Really, my (2) ?",
-     "What makes you think of my (2) ?",
-     "Do you want my (2) ?"
-  ]]
-]],
-["was", 2, [
- ["* was i *", [
-     "What if you were (2) ?",
-     "Do you think you were (2) ?",
-     "Were you (2) ?",
-     "What would it mean if you were (2) ?",
-     "What does ' (2) ' suggest to you ?",
-     "goto what"
-  ]],
- ["* i was *", [
-     "Were you really ?",
-     "Why do you tell me you were (2) now ?",
-     "Perhaps I already know you were (2)."
-  ]],
- ["* was you *", [
-     "Would you like to believe I was (2) ?",
-     "What suggests that I was (2) ?",
-     "What do you think ?",
-     "Perhaps I was (2).",
-     "What if I had been (2) ?"
-  ]]
-]],
-["i", 0, [
- ["* i @desire *", [
-     "What would it mean to you if you got (3) ?",
-     "Why do you want (3) ?",
-     "Suppose you got (3) soon.",
-     "What if you never got (3) ?",
-     "What would getting (3) mean to you ?",
-     "What does wanting (3) have to do with this discussion ?"
-  ]],
- ["* i am* @sad *", [
-     "I am sorry to hear that you are (3).",
-     "Do you think coming here will help you not to be (3) ?",
-     "I'm sure it's not pleasant to be (3).",
-     "Can you explain what made you (3) ?"
-  ]],
- ["* i am* @happy *", [
-     "How have I helped you to be (3) ?",
-     "Has your treatment made you (3) ?",
-     "What makes you (3) just now ?",
-     "Can you explain why you are suddenly (3) ?"
-  ]],
- ["* i was *", [
-     "goto was"
-  ]],
- ["* i @belief i *", [
-     "Do you really think so ?",
-     "But you are not sure you (3).",
-     "Do you really doubt you (3) ?"
-  ]],
- ["* i* @belief *you *", [
-     "goto you"
-  ]],
- ["* i am *", [
-     "Is it because you are (2) that you came to me ?",
-     "How long have you been (2) ?",
-     "Do you believe it is normal to be (2) ?",
-     "Do you enjoy being (2) ?",
-     "Do you know anyone else who is (2) ?"
-  ]],
- ["* i @cannot *", [
-     "How do you know that you can't (3) ?",
-     "Have you tried ?",
-     "Perhaps you could (3) now.",
-     "Do you really want to be able to (3) ?",
-     "What if you could (3) ?"
-  ]],
- ["* i don't *", [
-     "Don't you really (2) ?",
-     "Why don't you (2) ?",
-     "Do you wish to be able to (2) ?",
-     "Does that trouble you ?"
-  ]],
- ["* i feel *", [
-     "Tell me more about such feelings.",
-     "Do you often feel (2) ?",
-     "Do you enjoy feeling (2) ?",
-     "Of what does feeling (2) remind you ?"
-  ]],
- ["* i * you *", [
-     "Perhaps in your fantasies we (2) each other.",
-     "Do you wish to (2) me ?",
-     "You seem to need to (2) me.",
-     "Do you (2) anyone else ?"
-  ]],
- ["*", [
-     "You say (1) ?",
-     "Can you elaborate on that ?",
-     "Do you say (1) for some special reason ?",
-     "That's quite interesting."
-  ]]
-]],
-["you", 0, [
- ["* you remind me of *", [
-     "goto alike"
-  ]],
- ["* you are *", [
-     "What makes you think I am (2) ?",
-     "Does it please you to believe I am (2) ?",
-     "Do you sometimes wish you were (2) ?",
-     "Perhaps you would like to be (2)."
-  ]],
- ["* you* me *", [
-     "Why do you think I (2) you ?",
-     "You like to think I (2) you -- don't you ?",
-     "What makes you think I (2) you ?",
-     "Really, I (2) you ?",
-     "Do you wish to believe I (2) you ?",
-     "Suppose I did (2) you -- what would that mean ?",
-     "Does someone else believe I (2) you ?"
-  ]],
- ["* you *", [
-     "We were discussing you -- not me.",
-     "Oh, I (2) ?",
-     "You're not really talking about me -- are you ?",
-     "What are your feelings now ?"
-  ]]
-]],
-["yes", 0, [
- ["*", [
-     "You seem to be quite positive.",
-     "You are sure.",
-     "I see.",
-     "I understand."
-  ]]
-]],
-["no", 0, [
- ["* no one *", [
-     "Are you sure, no one (2) ?",
-     "Surely someone (2) .",
-     "Can you think of anyone at all ?",
-     "Are you thinking of a very special person ?",
-     "Who, may I ask ?",
-     "You have a particular person in mind, don't you ?",
-     "Who do you think you are talking about ?"
-  ]],
- ["*", [
-     "Are you saying no just to be negative?",
-     "You are being a bit negative.",
-     "Why not ?",
-     "Why 'no' ?"
-  ]]
-]],
-["my", 2, [
- ["$ * my *", [
-     "Does that have anything to do with the fact that your (2) ?",
-     "Lets discuss further why your (2).",
-     "Earlier you said your (2).",
-     "But your (2)."
-  ]],
- ["* my* @family *", [
-     "Tell me more about your family.",
-     "Who else in your family (4) ?",
-     "Your (3) ?",
-     "What else comes to your mind when you think of your (3) ?"
-  ]],
- ["* my *", [
-     "Your (2) ?",
-     "Why do you say your (2) ?",
-     "Does that suggest anything else which belongs to you ?",
-     "Is it important to you that your (2) ?"
-  ]]
-]],
-["can", 0, [
- ["* can you *", [
-     "You believe I can (2) don't you ?",
-     "goto what",
-     "You want me to be able to (2).",
-     "Perhaps you would like to be able to (2) yourself."
-  ]],
- ["* can i *", [
-     "Whether or not you can (2) depends on you more than on me.",
-     "Do you want to be able to (2) ?",
-     "Perhaps you don't want to (2).",
-     "goto what"
-  ]]
-]],
-["what", 0, [
- ["*", [
-     "Why do you ask ?",
-     "Does that question interest you ?",
-     "What is it you really want to know ?",
-     "Are such questions much on your mind ?",
-     "What answer would please you most ?",
-     "What do you think ?",
-     "What comes to mind when you ask that ?",
-     "Have you asked such questions before ?",
-     "Have you asked anyone else ?"
-  ]]
-]],
-["who", 0, [
- ["who *", [
-     "goto what"
-  ]]
-]],
-["when", 0, [
- ["when *", [
-     "goto what"
-  ]]
-]],
-["where", 0, [
- ["where *", [
-     "goto what"
-  ]]
-]],
-["how", 0, [
- ["how *", [
-     "goto what"
-  ]]
-]],
-["because", 0, [
- ["*", [
-     "Is that the real reason ?",
-     "Don't any other reasons come to mind ?",
-     "Does that reason seem to explain anything else ?",
-     "What other reasons might there be ?"
-  ]]
-]],
-["why", 0, [
- ["* why don't you *", [
-     "Do you believe I don't (2) ?",
-     "Perhaps I will (2) in good time.",
-     "Should you (2) yourself ?",
-     "You want me to (2) ?",
-     "goto what"
-  ]],
- ["* why can't i *", [
-     "Do you think you should be able to (2) ?",
-     "Do you want to be able to (2) ?",
-     "Do you believe this will help you to (2) ?",
-     "Have you any idea why you can't (2) ?",
-     "goto what"
-  ]],
- ["*", [
-     "goto what"
-  ]]
-]],
-["everyone", 2, [
- ["* @everyone *", [
-     "Really, (2) ?",
-     "Surely not (2).",
-     "Can you think of anyone in particular ?",
-     "Who, for example?",
-     "Are you thinking of a very special person ?",
-     "Who, may I ask ?",
-     "Someone special perhaps ?",
-     "You have a particular person in mind, don't you ?",
-     "Who do you think you're talking about ?"
-  ]]
-]],
-["everybody", 2, [
- ["*", [
-     "goto everyone"
-  ]]
-]],
-["nobody", 2, [
- ["*", [
-     "goto everyone"
-  ]]
-]],
-["noone", 2, [
- ["*", [
-     "goto everyone"
-  ]]
-]],
-["always", 1, [
- ["*", [
-     "Can you think of a specific example ?",
-     "When ?",
-     "What incident are you thinking of ?",
-     "Really, always ?"
-  ]]
-]],
-["alike", 10, [
- ["*", [
-     "In what way ?",
-     "What resemblence do you see ?",
-     "What does that similarity suggest to you ?",
-     "What other connections do you see ?",
-     "What do you suppose that resemblence means ?",
-     "What is the connection, do you suppose ?",
-     "Could there really be some connection ?",
-     "How ?"
-  ]]
-]],
-["like", 10, [
- ["* @be *like *", [
-     "goto alike"
-  ]]
-]],
-["different", 0, [
- ["*", [
-     "How is it different ?",
-     "What differences do you see ?",
-     "What does that difference suggest to you ?",
-     "What other distinctions do you see ?",
-     "What do you suppose that disparity means ?",
-     "Could there be some connection, do you suppose ?",
-     "How ?"
-  ]]
-]]
 
 ];
 
